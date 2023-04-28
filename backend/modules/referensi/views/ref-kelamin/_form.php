@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
   
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">
-	        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
+	        <?= Html::submitButton($model->isNewRecord ? 'Simpan' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']) ?>
 	    </div>
 	<?php } ?>
 

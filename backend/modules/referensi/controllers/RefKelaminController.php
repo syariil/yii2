@@ -68,8 +68,8 @@ class RefKelaminController extends Controller
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'footer'=> Html::button('Keluar',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-success','role'=>'modal-remote'])
                 ];    
         }else{
             return $this->render('view', [
@@ -100,17 +100,17 @@ class RefKelaminController extends Controller
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-success','type'=>"submit"])
+                    'footer'=> Html::button('Keluar',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Simpan',['class'=>'btn btn-success','type'=>"submit"])
         
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
                     'title'=> "Membuat Jenis Kelamin baru",
-                    'content'=>'<span class="text-success">Memebuat jenis kelamin baru berhasi;</span>',
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Create More',['create'],['class'=>'btn btn-success','role'=>'modal-remote'])
+                    'content'=>'<span class="text-success">Membuat jenis kelamin baru berhasil</span>',
+                    'footer'=> Html::button('Keluar',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                            Html::a('Buat Lagi',['create'],['class'=>'btn btn-success','role'=>'modal-remote'])
         
                 ];         
             }else{           
@@ -119,8 +119,8 @@ class RefKelaminController extends Controller
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-success','type'=>"submit"])
+                    'footer'=> Html::button('Keluar',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Simpan',['class'=>'btn btn-success','type'=>"submit"])
         
                 ];         
             }
@@ -163,8 +163,8 @@ class RefKelaminController extends Controller
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Keluar',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Update',['class'=>'btn btn-success','type'=>"submit"])
                 ];         
             }else if($model->load($request->post()) && $model->save()){
                 return [
@@ -173,8 +173,8 @@ class RefKelaminController extends Controller
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                    'footer'=> Html::button('Keluar',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                            Html::a('Update',['update','id'=>$id],['class'=>'btn btn-success','role'=>'modal-remote'])
                 ];    
             }else{
                  return [
@@ -182,8 +182,8 @@ class RefKelaminController extends Controller
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                    'footer'=> Html::button('Keluar',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Update',['class'=>'btn btn-primary','type'=>"submit"])
                 ];        
             }
         }else{
@@ -279,26 +279,4 @@ class RefKelaminController extends Controller
      *  {@inheritdoc}
      */
 
-    public function beforeSave($insert)
-    {        
-        $userId = (Yii::$app && Yii::$app->user) ? Yii::$app->user->id : null;
-        $userIP = (Yii::$app->request) ? Yii::$app->request->userIP : null;
-        if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->setAttributes([                    
-                    'CREATE_DATE' => new Expression('NOW()'),
-                    'CREATE_BY' => $userId,                    
-                    'CREATE_IP' => $userIP,
-                ]);                
-                return true;
-            }
-            $this->setAttributes([                
-                'UPDATE_DATE' => new Expression('NOW()'),
-                'UPDATE_BY' => $userId,                
-                'UPDATE_IP' => $userIP,
-            ]);
-            return true;        
-        }
-        return false;
-    }
 }

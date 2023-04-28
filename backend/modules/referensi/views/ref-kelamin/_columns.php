@@ -44,7 +44,7 @@ return [
     // ],
     [
         'class' => 'kartik\grid\ActionColumn',
-        'dropdown' => true,
+        'dropdown' => false,
         'vAlign'=>'middle',
         'urlCreator' => function($action, $model, $key, $index) { 
                 return Url::to([$action,'id'=>$key]);

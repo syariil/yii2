@@ -10,7 +10,7 @@ use hoaaah\ajaxcrud\BulkButtonWidget;
 /* @var $searchModel backend\modules\referensi\models\RefKelaminSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ref Kelamin';
+$this->title = 'Jenis Kelamin';
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
